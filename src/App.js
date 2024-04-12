@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Stopwatch from './Stopwatch'; // Import the Stopwatch component
+import Tictecteo from './Tictecteo'; // Import the Tictecteo component
+import Navigation from './comp/Navigation';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter, Routes, and Route
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        {/* Navigation component is outside the Router */}
+        <Navigation />
+        <div>
+          {/* 
+            Use the Routes component to define routes.
+            Each Route component renders a specific component based on the URL path.
+          */}
+          <Routes>
+          <Route path="/" element={<Stopwatch />}/>
+          <Route path="/Stopwatch" element={<Stopwatch />} /> {/* Route for Stopwatch component */}
+            <Route path="/Tictecteo" element={<Tictecteo />} /> {/* Route for Tictecteo component */}
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
